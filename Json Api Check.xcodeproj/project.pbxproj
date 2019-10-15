@@ -14,6 +14,11 @@
 		E51B6D9C23562290005E00E2 /* Json_Api_CheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6D9B23562290005E00E2 /* Json_Api_CheckTests.swift */; };
 		E51B6DA723562290005E00E2 /* Json_Api_CheckUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DA623562290005E00E2 /* Json_Api_CheckUITests.swift */; };
 		E51B6DB6235622D0005E00E2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E51B6DB5235622D0005E00E2 /* Alamofire */; };
+		E51B6DBE235625AC005E00E2 /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DBD235625AC005E00E2 /* UsersListView.swift */; };
+		E51B6DC0235625C7005E00E2 /* UsersListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DBF235625C7005E00E2 /* UsersListCellView.swift */; };
+		E51B6DC2235625F1005E00E2 /* RepositoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC1235625F1005E00E2 /* RepositoryInteractor.swift */; };
+		E51B6DC423563019005E00E2 /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC323563019005E00E2 /* UsersListPresenter.swift */; };
+		E51B6DC62356334A005E00E2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC52356334A005E00E2 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +51,11 @@
 		E51B6DA223562290005E00E2 /* Json Api CheckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Json Api CheckUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51B6DA623562290005E00E2 /* Json_Api_CheckUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json_Api_CheckUITests.swift; sourceTree = "<group>"; };
 		E51B6DA823562290005E00E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E51B6DBD235625AC005E00E2 /* UsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListView.swift; sourceTree = "<group>"; };
+		E51B6DBF235625C7005E00E2 /* UsersListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListCellView.swift; sourceTree = "<group>"; };
+		E51B6DC1235625F1005E00E2 /* RepositoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractor.swift; sourceTree = "<group>"; };
+		E51B6DC323563019005E00E2 /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
+		E51B6DC52356334A005E00E2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +118,7 @@
 				E51B6D8D23562290005E00E2 /* Assets.xcassets */,
 				E51B6D8F23562290005E00E2 /* LaunchScreen.storyboard */,
 				E51B6D9223562290005E00E2 /* Info.plist */,
+				E51B6DC52356334A005E00E2 /* Enums.swift */,
 			);
 			path = "Json Api Check";
 			sourceTree = "<group>";
@@ -133,6 +144,7 @@
 		E51B6DB723562458005E00E2 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				E51B6DC1235625F1005E00E2 /* RepositoryInteractor.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -140,6 +152,9 @@
 		E51B6DB823562468005E00E2 /* UsersList */ = {
 			isa = PBXGroup;
 			children = (
+				E51B6DBD235625AC005E00E2 /* UsersListView.swift */,
+				E51B6DBF235625C7005E00E2 /* UsersListCellView.swift */,
+				E51B6DC323563019005E00E2 /* UsersListPresenter.swift */,
 			);
 			path = UsersList;
 			sourceTree = "<group>";
@@ -309,7 +324,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E51B6D852356228F005E00E2 /* AppDelegate.swift in Sources */,
+				E51B6DC2235625F1005E00E2 /* RepositoryInteractor.swift in Sources */,
+				E51B6DBE235625AC005E00E2 /* UsersListView.swift in Sources */,
+				E51B6DC423563019005E00E2 /* UsersListPresenter.swift in Sources */,
+				E51B6DC62356334A005E00E2 /* Enums.swift in Sources */,
 				E51B6D872356228F005E00E2 /* SceneDelegate.swift in Sources */,
+				E51B6DC0235625C7005E00E2 /* UsersListCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +504,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.upsage.Json-Api-Check";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -502,7 +522,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.upsage.Json-Api-Check";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
