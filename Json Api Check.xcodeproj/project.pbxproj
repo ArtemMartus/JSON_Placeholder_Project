@@ -15,10 +15,12 @@
 		E51B6DA723562290005E00E2 /* Json_Api_CheckUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DA623562290005E00E2 /* Json_Api_CheckUITests.swift */; };
 		E51B6DB6235622D0005E00E2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E51B6DB5235622D0005E00E2 /* Alamofire */; };
 		E51B6DBE235625AC005E00E2 /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DBD235625AC005E00E2 /* UsersListView.swift */; };
-		E51B6DC0235625C7005E00E2 /* UsersListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DBF235625C7005E00E2 /* UsersListCellView.swift */; };
 		E51B6DC2235625F1005E00E2 /* RepositoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC1235625F1005E00E2 /* RepositoryInteractor.swift */; };
 		E51B6DC423563019005E00E2 /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC323563019005E00E2 /* UsersListPresenter.swift */; };
 		E51B6DC62356334A005E00E2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC52356334A005E00E2 /* Enums.swift */; };
+		E51B6DC823566403005E00E2 /* UsersListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC723566403005E00E2 /* UsersListCellView.swift */; };
+		E51B6DCB23566546005E00E2 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E51B6DCA23566546005E00E2 /* SwiftyJSON */; };
+		E51B6DCD2356656A005E00E2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DCC2356656A005E00E2 /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,10 +54,11 @@
 		E51B6DA623562290005E00E2 /* Json_Api_CheckUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json_Api_CheckUITests.swift; sourceTree = "<group>"; };
 		E51B6DA823562290005E00E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E51B6DBD235625AC005E00E2 /* UsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListView.swift; sourceTree = "<group>"; };
-		E51B6DBF235625C7005E00E2 /* UsersListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListCellView.swift; sourceTree = "<group>"; };
 		E51B6DC1235625F1005E00E2 /* RepositoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInteractor.swift; sourceTree = "<group>"; };
 		E51B6DC323563019005E00E2 /* UsersListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListPresenter.swift; sourceTree = "<group>"; };
 		E51B6DC52356334A005E00E2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		E51B6DC723566403005E00E2 /* UsersListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListCellView.swift; sourceTree = "<group>"; };
+		E51B6DCC2356656A005E00E2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E51B6DCB23566546005E00E2 /* SwiftyJSON in Frameworks */,
 				E51B6DB6235622D0005E00E2 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,8 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				E51B6DBD235625AC005E00E2 /* UsersListView.swift */,
-				E51B6DBF235625C7005E00E2 /* UsersListCellView.swift */,
 				E51B6DC323563019005E00E2 /* UsersListPresenter.swift */,
+				E51B6DC723566403005E00E2 /* UsersListCellView.swift */,
 			);
 			path = UsersList;
 			sourceTree = "<group>";
@@ -162,6 +166,7 @@
 		E51B6DB923562474005E00E2 /* UserDetails */ = {
 			isa = PBXGroup;
 			children = (
+				E51B6DCC2356656A005E00E2 /* UserData.swift */,
 			);
 			path = UserDetails;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 			name = "Json Api Check";
 			packageProductDependencies = (
 				E51B6DB5235622D0005E00E2 /* Alamofire */,
+				E51B6DCA23566546005E00E2 /* SwiftyJSON */,
 			);
 			productName = "Json Api Check";
 			productReference = E51B6D812356228F005E00E2 /* Json Api Check.app */;
@@ -280,6 +286,7 @@
 			mainGroup = E51B6D782356228F005E00E2;
 			packageReferences = (
 				E51B6DB4235622D0005E00E2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				E51B6DC923566546005E00E2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = E51B6D822356228F005E00E2 /* Products */;
 			projectDirPath = "";
@@ -325,11 +332,12 @@
 			files = (
 				E51B6D852356228F005E00E2 /* AppDelegate.swift in Sources */,
 				E51B6DC2235625F1005E00E2 /* RepositoryInteractor.swift in Sources */,
+				E51B6DCD2356656A005E00E2 /* UserData.swift in Sources */,
 				E51B6DBE235625AC005E00E2 /* UsersListView.swift in Sources */,
 				E51B6DC423563019005E00E2 /* UsersListPresenter.swift in Sources */,
 				E51B6DC62356334A005E00E2 /* Enums.swift in Sources */,
+				E51B6DC823566403005E00E2 /* UsersListCellView.swift in Sources */,
 				E51B6D872356228F005E00E2 /* SceneDelegate.swift in Sources */,
-				E51B6DC0235625C7005E00E2 /* UsersListCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +668,14 @@
 				minimumVersion = 4.9.0;
 			};
 		};
+		E51B6DC923566546005E00E2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -667,6 +683,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E51B6DB4235622D0005E00E2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		E51B6DCA23566546005E00E2 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E51B6DC923566546005E00E2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

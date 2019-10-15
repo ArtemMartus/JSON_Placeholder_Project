@@ -9,5 +9,7 @@
 import Foundation
 
 class RepositoryInteractor {
-    
+    var usersList: [UserData] {
+        return [UserData(name: "Angela", age: 34), UserData(name: "Adam", age: 20)]
+    }
 }

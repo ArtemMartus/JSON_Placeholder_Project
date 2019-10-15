@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum cellIdentifiers: String {
-    case usersListCell
-}
+
+let usersListCell = "usersListCell"
+

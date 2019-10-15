@@ -25,7 +25,7 @@ class UsersListView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UsersListCellView.self, forCellReuseIdentifier: cellIdentifiers.usersListCell.rawValue)
+        tableView.register(UsersListCellView.self, forCellReuseIdentifier: usersListCell)
         tableView.delegate = presenter
         tableView.dataSource = presenter
         

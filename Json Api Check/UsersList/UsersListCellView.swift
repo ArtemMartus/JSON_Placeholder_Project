@@ -9,20 +9,16 @@
 import UIKit
 
 class UsersListCellView: UITableViewCell {
-    private(set) lazy var label: UILabel!
-        = UILabel()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(label)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        label.frame = contentView.frame
+    func updateWith(user: UserData){
+        textLabel!.text = user.name
+        detailTextLabel!.text = "Age: \(user.age)"
     }
 }
