@@ -8,14 +8,21 @@
 
 import UIKit
 
-class UsersListView: UIViewController {
-    private lazy var presenter: ULPresenter! = UsersListPresenter()
+protocol Reloadable {
+    func reload()
+}
+class UsersListView: UIViewController, Reloadable {
+    private lazy var presenter: ULPresenter! = UsersListPresenter(view: self)
     private lazy var tableView: UITableView! = UITableView(frame: view.frame)
     
     init() {
         super.init(nibName: nil, bundle: nil)
-    
+        print("users list view init()")
         title = "Users"
+    }
+    
+    deinit {
+        print("users list view deinit")
     }
     
     required init?(coder: NSCoder) {
@@ -31,5 +38,9 @@ class UsersListView: UIViewController {
         
         view.addSubview(tableView)
         view.backgroundColor = .yellow
+    }
+    
+    func reload() {
+        tableView.reloadData()
     }
 }

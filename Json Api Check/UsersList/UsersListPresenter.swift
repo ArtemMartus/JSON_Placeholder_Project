@@ -7,27 +7,63 @@
 //
 
 import UIKit
+import RxSwift
+import Dispatch
 
 typealias ULPresenter = UITableViewDelegate & UITableViewDataSource
 
 class UsersListPresenter: NSObject, ULPresenter {
     
     private weak var repository: RepositoryInteractor!
+    private var sub: Disposable!
+    private let reloadableView: Reloadable
     
-    override init() {
+    init(view: Reloadable) {
+        reloadableView = view
         repository = (UIApplication.shared.delegate as! AppDelegate).repository
+        
+        super.init()
+        
+        sub = repository.users.subscribe({
+            [weak self] event in
+            print("data updated with event")
+            guard let self = self else {return}
+            self.reloadableView.reload()
+            })
+    }
+    
+    deinit {
+        print("disposing sub")
+        sub.dispose()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repository.usersList.count
+        var users: Users!
+        do {
+            users = try repository.users.value()
+        } catch {
+            fatalError("Couldn't retrieve data")
+        }
+        return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView
             .dequeueReusableCell(withIdentifier: usersListCell, for: indexPath) as! UsersListCellView
         
-        cell.updateWith(user: repository.usersList[indexPath.row])
-    
+        var users: Users!
+        do {
+            users = try repository.users.value()
+        } catch {
+            fatalError("Couldn't retrieve data")
+        }
+        
+        cell.updateWith(user: users[indexPath.row])
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selected row: \(indexPath.row)")
     }
 }

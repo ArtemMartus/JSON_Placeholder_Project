@@ -21,6 +21,10 @@
 		E51B6DC823566403005E00E2 /* UsersListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC723566403005E00E2 /* UsersListCellView.swift */; };
 		E51B6DCB23566546005E00E2 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E51B6DCA23566546005E00E2 /* SwiftyJSON */; };
 		E51B6DCD2356656A005E00E2 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DCC2356656A005E00E2 /* UserData.swift */; };
+		E51B6DD12357370E005E00E2 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DD02357370E005E00E2 /* UserDetailsView.swift */; };
+		E51B6DD423573B1B005E00E2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DD323573B1B005E00E2 /* Router.swift */; };
+		E51B6DD6235746CB005E00E2 /* UserRelatedPojo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DD5235746CB005E00E2 /* UserRelatedPojo.swift */; };
+		E51B6DDB23574E45005E00E2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E51B6DDA23574E45005E00E2 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,9 @@
 		E51B6DC52356334A005E00E2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		E51B6DC723566403005E00E2 /* UsersListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListCellView.swift; sourceTree = "<group>"; };
 		E51B6DCC2356656A005E00E2 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		E51B6DD02357370E005E00E2 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
+		E51B6DD323573B1B005E00E2 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		E51B6DD5235746CB005E00E2 /* UserRelatedPojo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelatedPojo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E51B6DDB23574E45005E00E2 /* RxSwift in Frameworks */,
 				E51B6DCB23566546005E00E2 /* SwiftyJSON in Frameworks */,
 				E51B6DB6235622D0005E00E2 /* Alamofire in Frameworks */,
 			);
@@ -111,6 +119,7 @@
 		E51B6D832356228F005E00E2 /* Json Api Check */ = {
 			isa = PBXGroup;
 			children = (
+				E51B6DD223573B08005E00E2 /* Router */,
 				E51B6DBC23562495005E00E2 /* PhotoDetails */,
 				E51B6DBB2356248B005E00E2 /* AlbumDetails */,
 				E51B6DBA23562480005E00E2 /* PostDetails */,
@@ -148,6 +157,8 @@
 		E51B6DB723562458005E00E2 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				E51B6DCC2356656A005E00E2 /* UserData.swift */,
+				E51B6DD5235746CB005E00E2 /* UserRelatedPojo.swift */,
 				E51B6DC1235625F1005E00E2 /* RepositoryInteractor.swift */,
 			);
 			path = Repository;
@@ -166,7 +177,7 @@
 		E51B6DB923562474005E00E2 /* UserDetails */ = {
 			isa = PBXGroup;
 			children = (
-				E51B6DCC2356656A005E00E2 /* UserData.swift */,
+				E51B6DD02357370E005E00E2 /* UserDetailsView.swift */,
 			);
 			path = UserDetails;
 			sourceTree = "<group>";
@@ -192,6 +203,14 @@
 			path = PhotoDetails;
 			sourceTree = "<group>";
 		};
+		E51B6DD223573B08005E00E2 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E51B6DD323573B1B005E00E2 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -211,6 +230,7 @@
 			packageProductDependencies = (
 				E51B6DB5235622D0005E00E2 /* Alamofire */,
 				E51B6DCA23566546005E00E2 /* SwiftyJSON */,
+				E51B6DDA23574E45005E00E2 /* RxSwift */,
 			);
 			productName = "Json Api Check";
 			productReference = E51B6D812356228F005E00E2 /* Json Api Check.app */;
@@ -287,6 +307,7 @@
 			packageReferences = (
 				E51B6DB4235622D0005E00E2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				E51B6DC923566546005E00E2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				E51B6DD923574E45005E00E2 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = E51B6D822356228F005E00E2 /* Products */;
 			projectDirPath = "";
@@ -332,8 +353,11 @@
 			files = (
 				E51B6D852356228F005E00E2 /* AppDelegate.swift in Sources */,
 				E51B6DC2235625F1005E00E2 /* RepositoryInteractor.swift in Sources */,
+				E51B6DD423573B1B005E00E2 /* Router.swift in Sources */,
 				E51B6DCD2356656A005E00E2 /* UserData.swift in Sources */,
 				E51B6DBE235625AC005E00E2 /* UsersListView.swift in Sources */,
+				E51B6DD6235746CB005E00E2 /* UserRelatedPojo.swift in Sources */,
+				E51B6DD12357370E005E00E2 /* UserDetailsView.swift in Sources */,
 				E51B6DC423563019005E00E2 /* UsersListPresenter.swift in Sources */,
 				E51B6DC62356334A005E00E2 /* Enums.swift in Sources */,
 				E51B6DC823566403005E00E2 /* UsersListCellView.swift in Sources */,
@@ -676,6 +700,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		E51B6DD923574E45005E00E2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -688,6 +720,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E51B6DC923566546005E00E2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		E51B6DDA23574E45005E00E2 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E51B6DD923574E45005E00E2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

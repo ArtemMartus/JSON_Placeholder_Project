@@ -8,12 +8,7 @@
 
 import Foundation
 
-class UserData {
+struct UserData {
     var name: String
     var age: UInt
-    
-    internal init(name: String, age: UInt) {
-        self.name = name
-        self.age = age
-    }
 }
