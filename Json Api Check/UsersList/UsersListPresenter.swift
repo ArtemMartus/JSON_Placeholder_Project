@@ -26,14 +26,14 @@ class UsersListPresenter: NSObject, ULPresenter {
         
         sub = repository.users.subscribe({
             [weak self] event in
-            print("data updated with event")
+            debugPrint("data updated with event")
             guard let self = self else {return}
             self.reloadableView.reload()
             })
     }
     
     deinit {
-        print("disposing sub")
+        debugPrint("disposing sub")
         sub.dispose()
     }
     
@@ -64,6 +64,6 @@ class UsersListPresenter: NSObject, ULPresenter {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected row: \(indexPath.row)")
+        debugPrint("Selected row: \(indexPath.row)")
     }
 }

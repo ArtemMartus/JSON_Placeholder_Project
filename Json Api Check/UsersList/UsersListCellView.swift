@@ -19,6 +19,6 @@ class UsersListCellView: UITableViewCell {
     
     func updateWith(user: User){
         textLabel!.text = user.name
-        detailTextLabel!.text = String(user.phone!)
+        detailTextLabel!.text = String(user.phone)
     }
 }

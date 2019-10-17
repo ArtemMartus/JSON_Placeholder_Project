@@ -17,12 +17,12 @@ class UsersListView: UIViewController, Reloadable {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        print("users list view init()")
+        debugPrint("users list view init()")
         title = "Users"
     }
     
     deinit {
-        print("users list view deinit")
+        debugPrint("users list view deinit")
     }
     
     required init?(coder: NSCoder) {

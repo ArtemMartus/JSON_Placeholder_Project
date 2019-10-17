@@ -8,6 +8,9 @@
 
 import Foundation
 
+// used in init() as default for all string values
+let noInternetString = "No internet"
 
+// cell identifier for UsersList
 let usersListCell = "usersListCell"
 

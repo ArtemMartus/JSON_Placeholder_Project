@@ -11,16 +11,14 @@ import Alamofire
 import RxSwift
 
 class RepositoryInteractor {
-    private(set) var users = BehaviorSubject<Users>(value:
-        [User(id: 0, name: "No internet", username: "", email: "", address: nil, phone: "", website: "", company: nil)]
-    )
+    private(set) var users = BehaviorSubject<Users>(value:Users())
     
     
     init() {
         Alamofire.request("https://jsonplaceholder.typicode.com/users").responseUsers { response in
-            print("response downloaded")
+            debugPrint("response downloaded")
             if let users = response.result.value {
-                print("passsing data to subject")
+                debugPrint("passsing data to subject")
                 // UsersListPresenter must handle this
                 self.users.onNext(users)
             }
