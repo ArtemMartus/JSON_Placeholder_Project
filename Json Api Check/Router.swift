@@ -9,31 +9,26 @@
 import UIKit
 
 enum RouteState {
-    case usersList(view: UIViewController!)
-    case userDetails(view: UIViewController!)
-    case albumDetails(view: UIViewController!)
-    case postDetails(view: UIViewController!)
-    
-    func get()->UIViewController!{
-        switch self {
-        case .usersList(let view):
-            return view
-        case .userDetails(let view):
-            return view
-        case .albumDetails(let view):
-            return view
-        case .postDetails(let view):
-            return view
-        }
-    }
+    case usersList
+    case userDetails
+    case albumDetails
+    case postDetails
 }
 
 class Router {
-    private(set) var rootView: UINavigationController!
-    private var state: RouteState = .usersList(view: UsersListView())
-        
+    private(set) var viewController: UINavigationController!
+    private var state: RouteState = .usersList
     
-    init() {
-        rootView = UINavigationController(rootViewController: state.get())
+    private(set) lazy var usersListView = UsersListView()
+    private(set) lazy var userDetailsView = UserDetailsView()
+    
+    private(set) lazy var navigation = UINavigationController()
+    
+    
+    func setUp(_ window: UIWindow!){
+        navigation.viewControllers = [usersListView]
+        window.rootViewController = navigation
+        window.makeKeyAndVisible()
     }
+    
 }
