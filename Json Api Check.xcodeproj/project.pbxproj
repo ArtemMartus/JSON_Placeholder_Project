@@ -22,7 +22,6 @@
 		E51B6DC423563019005E00E2 /* UsersListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC323563019005E00E2 /* UsersListPresenter.swift */; };
 		E51B6DC62356334A005E00E2 /* StaticVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC52356334A005E00E2 /* StaticVariables.swift */; };
 		E51B6DC823566403005E00E2 /* UsersListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DC723566403005E00E2 /* UsersListCellView.swift */; };
-		E51B6DCB23566546005E00E2 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = E51B6DCA23566546005E00E2 /* SwiftyJSON */; };
 		E51B6DD12357370E005E00E2 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DD02357370E005E00E2 /* UserDetailsView.swift */; };
 		E51B6DD423573B1B005E00E2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DD323573B1B005E00E2 /* Router.swift */; };
 		E51B6DD6235746CB005E00E2 /* UserRelatedPojo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DD5235746CB005E00E2 /* UserRelatedPojo.swift */; };
@@ -88,7 +87,6 @@
 			files = (
 				E5127E57235854FF00B6A236 /* RealmSwift in Frameworks */,
 				E51B6DDB23574E45005E00E2 /* RxSwift in Frameworks */,
-				E51B6DCB23566546005E00E2 /* SwiftyJSON in Frameworks */,
 				E51B6DB6235622D0005E00E2 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +271,6 @@
 			name = "Json Api Check";
 			packageProductDependencies = (
 				E51B6DB5235622D0005E00E2 /* Alamofire */,
-				E51B6DCA23566546005E00E2 /* SwiftyJSON */,
 				E51B6DDA23574E45005E00E2 /* RxSwift */,
 				E5127E56235854FF00B6A236 /* RealmSwift */,
 			);
@@ -351,7 +348,6 @@
 			mainGroup = E51B6D782356228F005E00E2;
 			packageReferences = (
 				E51B6DB4235622D0005E00E2 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				E51B6DC923566546005E00E2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				E51B6DD923574E45005E00E2 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				E5127E55235854FF00B6A236 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
@@ -752,14 +748,6 @@
 				minimumVersion = 4.9.0;
 			};
 		};
-		E51B6DC923566546005E00E2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		E51B6DD923574E45005E00E2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -780,11 +768,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E51B6DB4235622D0005E00E2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		E51B6DCA23566546005E00E2 /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E51B6DC923566546005E00E2 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
 		};
 		E51B6DDA23574E45005E00E2 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
