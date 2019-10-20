@@ -29,13 +29,14 @@ import Realm
 
 // MARK: - User
 @objcMembers class User: Object, Codable {
-    dynamic let id: Int
-    dynamic let name, username, email: String
-    dynamic let address: Address
-    dynamic let phone, website: String
-    dynamic let company: Company
-
-    init(id: Int, name: String, username: String, email: String, address: Address, phone: String, website: String, company: Company) {
+    dynamic var id: Int?
+    dynamic var name, username, email: String?
+    dynamic var address: Address?
+    dynamic var phone, website: String?
+    dynamic var company: Company?
+    
+    convenience init(id: Int?, name: String?, username: String?, email: String?, address: Address?, phone: String?, website: String?, company: Company?) {
+        self.init()
         self.id = id
         self.name = name
         self.username = username
@@ -44,23 +45,6 @@ import Realm
         self.phone = phone
         self.website = website
         self.company = company
-        super.init()
-    }
-    
-    required init() {
-        id = -1
-        name = noInternetString;
-        username = name; email = name; phone = name; website = name
-        address = Address(); company = Company()
-        super.init()
-    }
-    
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        fatalError("init(realm:schema:) has not been implemented")
-    }
-    
-    required init(value: Any, schema: RLMSchema) {
-        fatalError("init(value:schema:) has not been implemented")
     }
 }
 
@@ -71,18 +55,18 @@ extension User {
         let me = try newJSONDecoder().decode(User.self, from: data)
         self.init(id: me.id, name: me.name, username: me.username, email: me.email, address: me.address, phone: me.phone, website: me.website, company: me.company)
     }
-
+    
     convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     convenience init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
         id: Int? = nil,
         name: String? = nil,
@@ -104,11 +88,11 @@ extension User {
             company: company ?? self.company
         )
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
@@ -125,31 +109,16 @@ extension User {
 
 // MARK: - Address
 @objcMembers class Address: Object, Codable {
-    dynamic let street, suite, city, zipcode: String
-    dynamic let geo: Geo
-
-    init(street: String, suite: String, city: String, zipcode: String, geo: Geo) {
+    dynamic var street, suite, city, zipcode: String?
+    dynamic var geo: Geo?
+    
+    convenience init(street: String?, suite: String?, city: String?, zipcode: String?, geo: Geo?) {
+        self.init()
         self.street = street
         self.suite = suite
         self.city = city
         self.zipcode = zipcode
         self.geo = geo
-        super.init()
-    }
-    
-    required init() {
-        city = noInternetString
-        street = city; zipcode = city; suite = city
-        geo = Geo()
-        super.init()
-    }
-    
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        fatalError("init(realm:schema:) has not been implemented")
-    }
-    
-    required init(value: Any, schema: RLMSchema) {
-        fatalError("init(value:schema:) has not been implemented")
     }
 }
 
@@ -160,18 +129,18 @@ extension Address {
         let me = try newJSONDecoder().decode(Address.self, from: data)
         self.init(street: me.street, suite: me.suite, city: me.city, zipcode: me.zipcode, geo: me.geo)
     }
-
+    
     convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     convenience init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
         street: String? = nil,
         suite: String? = nil,
@@ -187,11 +156,11 @@ extension Address {
             geo: geo ?? self.geo
         )
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
@@ -208,26 +177,12 @@ extension Address {
 
 // MARK: - Geo
 @objcMembers class Geo: Object, Codable {
-    dynamic let lat, lng: String
-
-    init(lat: String, lng: String) {
+    dynamic var lat, lng: String?
+    
+    convenience init(lat: String?, lng: String?) {
+        self.init()
         self.lat = lat
         self.lng = lng
-        super.init()
-    }
-    
-    required init() {
-        lat = noInternetString
-        lng = lat
-        super.init()
-    }
-    
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        fatalError("init(realm:schema:) has not been implemented")
-    }
-    
-    required init(value: Any, schema: RLMSchema) {
-        fatalError("init(value:schema:) has not been implemented")
     }
 }
 
@@ -238,18 +193,18 @@ extension Geo {
         let me = try newJSONDecoder().decode(Geo.self, from: data)
         self.init(lat: me.lat, lng: me.lng)
     }
-
+    
     convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     convenience init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
         lat: String? = nil,
         lng: String? = nil
@@ -259,11 +214,11 @@ extension Geo {
             lng: lng ?? self.lng
         )
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
@@ -280,27 +235,13 @@ extension Geo {
 
 // MARK: - Company
 @objcMembers class Company: Object, Codable {
-    dynamic let name, catchPhrase, bs: String
-
-    init(name: String, catchPhrase: String, bs: String) {
+    dynamic var name, catchPhrase, bs: String?
+    
+    convenience init(name: String?, catchPhrase: String?, bs: String?) {
+        self.init()
         self.name = name
         self.catchPhrase = catchPhrase
         self.bs = bs
-        super.init()
-    }
-    
-    required init() {
-        bs = noInternetString
-        name = bs; catchPhrase = bs
-        super.init()
-    }
-    
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        fatalError("init(realm:schema:) has not been implemented")
-    }
-    
-    required init(value: Any, schema: RLMSchema) {
-        fatalError("init(value:schema:) has not been implemented")
     }
 }
 
@@ -311,18 +252,18 @@ extension Company {
         let me = try newJSONDecoder().decode(Company.self, from: data)
         self.init(name: me.name, catchPhrase: me.catchPhrase, bs: me.bs)
     }
-
+    
     convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     convenience init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func with(
         name: String? = nil,
         catchPhrase: String? = nil,
@@ -334,11 +275,11 @@ extension Company {
             bs: bs ?? self.bs
         )
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
@@ -350,22 +291,22 @@ extension Array where Element == Users.Element {
     init(data: Data) throws {
         self = try newJSONDecoder().decode(Users.self, from: data)
     }
-
+    
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
         guard let data = json.data(using: encoding) else {
             throw NSError(domain: "JSONDecoding", code: 0, userInfo: nil)
         }
         try self.init(data: data)
     }
-
+    
     init(fromURL url: URL) throws {
         try self.init(data: try Data(contentsOf: url))
     }
-
+    
     func jsonData() throws -> Data {
         return try newJSONEncoder().encode(self)
     }
-
+    
     func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
@@ -395,20 +336,20 @@ extension DataRequest {
     fileprivate func decodableResponseSerializer<T: Decodable>() -> DataResponseSerializer<T> {
         return DataResponseSerializer { _, response, data, error in
             guard error == nil else { return .failure(error!) }
-
+            
             guard let data = data else {
                 return .failure(AFError.responseSerializationFailed(reason: .inputDataNil))
             }
-
+            
             return Result { try newJSONDecoder().decode(T.self, from: data) }
         }
     }
-
+    
     @discardableResult
     fileprivate func responseDecodable<T: Decodable>(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<T>) -> Void) -> Self {
         return response(queue: queue, responseSerializer: decodableResponseSerializer(), completionHandler: completionHandler)
     }
-
+    
     @discardableResult
     func responseUsers(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<Users>) -> Void) -> Self {
         return responseDecodable(queue: queue, completionHandler: completionHandler)

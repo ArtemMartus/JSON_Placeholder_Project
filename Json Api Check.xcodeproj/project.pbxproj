@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E5127E57235854FF00B6A236 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E5127E56235854FF00B6A236 /* RealmSwift */; };
 		E5127E5D23585E4800B6A236 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5127E5C23585E4800B6A236 /* RealmService.swift */; };
+		E5127E5F2358657A00B6A236 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5127E5E2358657A00B6A236 /* NetworkingService.swift */; };
 		E51B6D852356228F005E00E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6D842356228F005E00E2 /* AppDelegate.swift */; };
 		E51B6D872356228F005E00E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6D862356228F005E00E2 /* SceneDelegate.swift */; };
 		E51B6D8E23562290005E00E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E51B6D8D23562290005E00E2 /* Assets.xcassets */; };
@@ -26,6 +27,11 @@
 		E51B6DD423573B1B005E00E2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DD323573B1B005E00E2 /* Router.swift */; };
 		E51B6DD6235746CB005E00E2 /* UserRelatedPojo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6DD5235746CB005E00E2 /* UserRelatedPojo.swift */; };
 		E51B6DDB23574E45005E00E2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E51B6DDA23574E45005E00E2 /* RxSwift */; };
+		E51DAB7D235C827B00F91097 /* EmbedPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DAB7C235C827B00F91097 /* EmbedPostsView.swift */; };
+		E51DAB7F235C829000F91097 /* EmbedAlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DAB7E235C829000F91097 /* EmbedAlbumsView.swift */; };
+		E51DAB81235C82B400F91097 /* PostDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DAB80235C82B400F91097 /* PostDetailsView.swift */; };
+		E51DAB83235C82C700F91097 /* AlbumDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DAB82235C82C700F91097 /* AlbumDetailsView.swift */; };
+		E51DAB85235C82DA00F91097 /* PhotoDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51DAB84235C82DA00F91097 /* PhotoDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		E5127E5C23585E4800B6A236 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		E5127E5E2358657A00B6A236 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		E51B6D812356228F005E00E2 /* Json Api Check.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Json Api Check.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51B6D842356228F005E00E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E51B6D862356228F005E00E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +74,11 @@
 		E51B6DD02357370E005E00E2 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		E51B6DD323573B1B005E00E2 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E51B6DD5235746CB005E00E2 /* UserRelatedPojo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelatedPojo.swift; sourceTree = "<group>"; };
+		E51DAB7C235C827B00F91097 /* EmbedPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedPostsView.swift; sourceTree = "<group>"; };
+		E51DAB7E235C829000F91097 /* EmbedAlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbedAlbumsView.swift; sourceTree = "<group>"; };
+		E51DAB80235C82B400F91097 /* PostDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsView.swift; sourceTree = "<group>"; };
+		E51DAB82235C82C700F91097 /* AlbumDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsView.swift; sourceTree = "<group>"; };
+		E51DAB84235C82DA00F91097 /* PhotoDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,22 +110,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E5127E5A235855EE00B6A236 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				E51B6DD5235746CB005E00E2 /* UserRelatedPojo.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		E5127E5B23585E2D00B6A236 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				E5127E5C23585E4800B6A236 /* RealmService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		E51B6D782356228F005E00E2 = {
 			isa = PBXGroup;
 			children = (
@@ -137,19 +133,16 @@
 		E51B6D832356228F005E00E2 /* Json Api Check */ = {
 			isa = PBXGroup;
 			children = (
-				E51B6DD223573B08005E00E2 /* Router */,
-				E51B6DBC23562495005E00E2 /* PhotoDetails */,
-				E51B6DBB2356248B005E00E2 /* AlbumDetails */,
-				E51B6DBA23562480005E00E2 /* PostDetails */,
-				E51B6DB923562474005E00E2 /* UserDetails */,
-				E51B6DB823562468005E00E2 /* UsersList */,
-				E51B6DB723562458005E00E2 /* Repository */,
+				E51DAB93235CD19000F91097 /* Supporting files */,
+				E51DAB87235CD08300F91097 /* Router */,
+				E51DAB88235CD09600F91097 /* PhotoDetails */,
+				E51DAB89235CD0A500F91097 /* AlbumDetails */,
+				E51DAB8B235CD0D300F91097 /* UserDetails */,
+				E51DAB8A235CD0B700F91097 /* PostDetails */,
+				E51DAB8C235CD0FA00F91097 /* UsersList */,
+				E51DAB8F235CD14300F91097 /* Repository */,
 				E51B6D842356228F005E00E2 /* AppDelegate.swift */,
 				E51B6D862356228F005E00E2 /* SceneDelegate.swift */,
-				E51B6D8D23562290005E00E2 /* Assets.xcassets */,
-				E51B6D8F23562290005E00E2 /* LaunchScreen.storyboard */,
-				E51B6D9223562290005E00E2 /* Info.plist */,
-				E51B6DC52356334A005E00E2 /* StaticVariables.swift */,
 			);
 			path = "Json Api Check";
 			sourceTree = "<group>";
@@ -172,61 +165,94 @@
 			path = "Json Api CheckUITests";
 			sourceTree = "<group>";
 		};
-		E51B6DB723562458005E00E2 /* Repository */ = {
+		E51DAB87235CD08300F91097 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				E5127E5B23585E2D00B6A236 /* Services */,
-				E5127E5A235855EE00B6A236 /* Model */,
-				E51B6DC1235625F1005E00E2 /* RepositoryInteractor.swift */,
+				E51B6DD323573B1B005E00E2 /* Router.swift */,
 			);
-			path = Repository;
+			name = Router;
 			sourceTree = "<group>";
 		};
-		E51B6DB823562468005E00E2 /* UsersList */ = {
+		E51DAB88235CD09600F91097 /* PhotoDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E51DAB84235C82DA00F91097 /* PhotoDetailsView.swift */,
+			);
+			name = PhotoDetails;
+			sourceTree = "<group>";
+		};
+		E51DAB89235CD0A500F91097 /* AlbumDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E51DAB82235C82C700F91097 /* AlbumDetailsView.swift */,
+			);
+			name = AlbumDetails;
+			sourceTree = "<group>";
+		};
+		E51DAB8A235CD0B700F91097 /* PostDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E51DAB80235C82B400F91097 /* PostDetailsView.swift */,
+			);
+			name = PostDetails;
+			sourceTree = "<group>";
+		};
+		E51DAB8B235CD0D300F91097 /* UserDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E51B6DD02357370E005E00E2 /* UserDetailsView.swift */,
+				E51DAB7C235C827B00F91097 /* EmbedPostsView.swift */,
+				E51DAB7E235C829000F91097 /* EmbedAlbumsView.swift */,
+			);
+			name = UserDetails;
+			sourceTree = "<group>";
+		};
+		E51DAB8C235CD0FA00F91097 /* UsersList */ = {
 			isa = PBXGroup;
 			children = (
 				E51B6DBD235625AC005E00E2 /* UsersListView.swift */,
 				E51B6DC323563019005E00E2 /* UsersListPresenter.swift */,
 				E51B6DC723566403005E00E2 /* UsersListCellView.swift */,
 			);
-			path = UsersList;
+			name = UsersList;
 			sourceTree = "<group>";
 		};
-		E51B6DB923562474005E00E2 /* UserDetails */ = {
+		E51DAB8F235CD14300F91097 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				E51B6DD02357370E005E00E2 /* UserDetailsView.swift */,
+				E51DAB91235CD15800F91097 /* Model */,
+				E51DAB90235CD15200F91097 /* Services */,
+				E51B6DC1235625F1005E00E2 /* RepositoryInteractor.swift */,
 			);
-			path = UserDetails;
+			name = Repository;
 			sourceTree = "<group>";
 		};
-		E51B6DBA23562480005E00E2 /* PostDetails */ = {
+		E51DAB90235CD15200F91097 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E5127E5C23585E4800B6A236 /* RealmService.swift */,
+				E5127E5E2358657A00B6A236 /* NetworkingService.swift */,
 			);
-			path = PostDetails;
+			name = Services;
 			sourceTree = "<group>";
 		};
-		E51B6DBB2356248B005E00E2 /* AlbumDetails */ = {
+		E51DAB91235CD15800F91097 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E51B6DD5235746CB005E00E2 /* UserRelatedPojo.swift */,
 			);
-			path = AlbumDetails;
+			name = Model;
 			sourceTree = "<group>";
 		};
-		E51B6DBC23562495005E00E2 /* PhotoDetails */ = {
+		E51DAB93235CD19000F91097 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				E51B6DC52356334A005E00E2 /* StaticVariables.swift */,
+				E51B6D8D23562290005E00E2 /* Assets.xcassets */,
+				E51B6D8F23562290005E00E2 /* LaunchScreen.storyboard */,
+				E51B6D9223562290005E00E2 /* Info.plist */,
 			);
-			path = PhotoDetails;
-			sourceTree = "<group>";
-		};
-		E51B6DD223573B08005E00E2 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				E51B6DD323573B1B005E00E2 /* Router.swift */,
-			);
-			path = Router;
+			name = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,14 +398,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E51B6D852356228F005E00E2 /* AppDelegate.swift in Sources */,
+				E51DAB85235C82DA00F91097 /* PhotoDetailsView.swift in Sources */,
 				E51B6DC2235625F1005E00E2 /* RepositoryInteractor.swift in Sources */,
+				E51DAB7F235C829000F91097 /* EmbedAlbumsView.swift in Sources */,
+				E51DAB83235C82C700F91097 /* AlbumDetailsView.swift in Sources */,
 				E51B6DD423573B1B005E00E2 /* Router.swift in Sources */,
+				E5127E5F2358657A00B6A236 /* NetworkingService.swift in Sources */,
 				E51B6DBE235625AC005E00E2 /* UsersListView.swift in Sources */,
 				E51B6DD6235746CB005E00E2 /* UserRelatedPojo.swift in Sources */,
 				E51B6DD12357370E005E00E2 /* UserDetailsView.swift in Sources */,
 				E5127E5D23585E4800B6A236 /* RealmService.swift in Sources */,
+				E51DAB7D235C827B00F91097 /* EmbedPostsView.swift in Sources */,
 				E51B6DC423563019005E00E2 /* UsersListPresenter.swift in Sources */,
 				E51B6DC62356334A005E00E2 /* StaticVariables.swift in Sources */,
+				E51DAB81235C82B400F91097 /* PostDetailsView.swift in Sources */,
 				E51B6DC823566403005E00E2 /* UsersListCellView.swift in Sources */,
 				E51B6D872356228F005E00E2 /* SceneDelegate.swift in Sources */,
 			);
