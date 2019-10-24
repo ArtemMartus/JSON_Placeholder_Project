@@ -10,10 +10,15 @@ import UIKit
 
 protocol Reloadable {
     func reload()
+    var router: Router! {get}
 }
+
+
 class UsersListView: UIViewController, Reloadable {
     private lazy var presenter: ULPresenter! = UsersListPresenter(view: self)
     private lazy var tableView: UITableView! = UITableView(frame: view.frame)
+    
+    var router: Router! { (view.window?.windowScene?.delegate as? SceneDelegate)?.router }
     
     init() {
         super.init(nibName: nil, bundle: nil)

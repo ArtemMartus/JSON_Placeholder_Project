@@ -26,4 +26,26 @@ class NetworkingService {
             }
         }
     }
+    
+    func updatePosts(_ posts: BehaviorSubject<Posts>){
+        Alamofire.request(root + "posts").responsePosts { response in
+            debugPrint("posts response downloaded")
+            if let data = response.result.value {
+                debugPrint("passsing posts data to subject")
+                // UserDetailsPresenter must handle this
+                posts.onNext(data)
+            }
+        }
+    }
+    
+    func updateAlbums(_ albums: BehaviorSubject<Albums>){
+        Alamofire.request(root + "albums").responseAlbums { response in
+            debugPrint("albums response downloaded")
+            if let data = response.result.value {
+                debugPrint("passsing albums data to subject")
+                // UserDetailsPresenter must handle this
+                albums.onNext(data)
+            }
+        }
+    }
 }

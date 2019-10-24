@@ -14,12 +14,13 @@ typealias ULPresenter = UITableViewDelegate & UITableViewDataSource
 
 class UsersListPresenter: NSObject, ULPresenter {
     
+    private var router: Router! { view.router }
     private weak var repository: RepositoryInteractor!
     private var sub: Disposable!
-    private let reloadableView: Reloadable
+    private let view: Reloadable!
     
-    init(view: Reloadable) {
-        reloadableView = view
+    init(view: Reloadable!) {
+        self.view = view
         repository = (UIApplication.shared.delegate as! AppDelegate).repository
         
         super.init()
@@ -28,7 +29,7 @@ class UsersListPresenter: NSObject, ULPresenter {
             [weak self] event in
             debugPrint("data updated with event")
             guard let self = self else {return}
-            self.reloadableView.reload()
+            self.view.reload()
             })
     }
     
@@ -65,5 +66,9 @@ class UsersListPresenter: NSObject, ULPresenter {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         debugPrint("Selected row: \(indexPath.row)")
+        
+        let item = (try! repository.users.value())[indexPath.row]
+        router.userDetailsView.configure(item)
+        router.navigation.pushViewController(router.userDetailsView, animated: true)
     }
 }

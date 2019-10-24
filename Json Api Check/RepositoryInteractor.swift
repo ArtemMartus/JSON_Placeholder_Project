@@ -18,13 +18,29 @@ class RepositoryInteractor {
         return realm.users
     }
     
+    var posts: BehaviorSubject<Posts> {
+        return realm.posts
+    }
+    
+    var albums: BehaviorSubject<Albums> {
+        return realm.albums
+    }
     
     init() {
         network = NetworkingService()
         realm = RealmService()
         
         if try! users.value().count == 0 {
+            debugPrint("Fetching users from internet...")
             network.updateUsers(users)
+        }
+        if try! posts.value().count == 0 {
+            debugPrint("Fetching posts from internet...")
+            network.updatePosts(posts)
+        }
+        if try! albums.value().count == 0 {
+            debugPrint("Fetching albums from internet...")
+            network.updateAlbums(albums)
         }
     }
     

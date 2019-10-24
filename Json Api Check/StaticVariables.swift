@@ -8,9 +8,11 @@
 
 import Foundation
 
-// used in init() as default for all string values
+/// used in init() as default for all string values
 public let noInternetString = "No internet"
 
-// cell identifier for UsersList
-public let usersListCell = "usersListCell"
+/// cell identifier for UsersList
+public let usersListCell = "users list cell"
 
+/// cell identifier for EmbedUserDetailsVIew's  TableView
+public let standardListCell = "standard list cell"

@@ -6,4 +6,8 @@
 //  Copyright © 2019 Artem Martus. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class EmbedUserDetailsView: UITableViewController {
+    
+}
