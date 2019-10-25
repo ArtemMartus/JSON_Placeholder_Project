@@ -37,18 +37,18 @@ class UserDetailsView: UIViewController, Reloadable {
     
     func setupLayout(){
         let view = embedTable.view!
-        let safe = self.view.safeAreaLayoutGuide
 
         self.addChild(embedTable)
         self.view.addSubview(view)
         
         view.translatesAutoresizingMaskIntoConstraints = false
+        embedTable.tableView.contentInsetAdjustmentBehavior = .never
         
         NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: safe.topAnchor),
-            view.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            view.topAnchor.constraint(equalTo: self.view.topAnchor),
+            view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
         
         embedTable.tableView.register(UITableViewCell.self, forCellReuseIdentifier: standardListCell)
