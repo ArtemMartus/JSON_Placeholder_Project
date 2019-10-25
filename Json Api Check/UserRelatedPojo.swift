@@ -28,14 +28,14 @@ import Realm
 
 
 // MARK: - User
-@objcMembers class User: Object, Codable {
-    dynamic var id: Int?
-    dynamic var name, username, email: String?
-    dynamic var address: Address?
-    dynamic var phone, website: String?
-    dynamic var company: Company?
+class User: Object, Codable {
+    @objc dynamic var id = -1
+    @objc dynamic var name, username, email: String?
+    @objc dynamic var address: Address?
+    @objc dynamic var phone, website: String?
+    @objc dynamic var company: Company?
     
-    convenience init(id: Int?, name: String?, username: String?, email: String?, address: Address?, phone: String?, website: String?, company: Company?) {
+    convenience init(id: Int, name: String?, username: String?, email: String?, address: Address?, phone: String?, website: String?, company: Company?) {
         self.init()
         self.id = id
         self.name = name
@@ -108,9 +108,9 @@ extension User {
 //   }
 
 // MARK: - Address
-@objcMembers class Address: Object, Codable {
-    dynamic var street, suite, city, zipcode: String?
-    dynamic var geo: Geo?
+class Address: Object, Codable {
+    @objc dynamic var street, suite, city, zipcode: String?
+    @objc dynamic var geo: Geo?
     
     convenience init(street: String?, suite: String?, city: String?, zipcode: String?, geo: Geo?) {
         self.init()
@@ -176,8 +176,8 @@ extension Address {
 //   }
 
 // MARK: - Geo
-@objcMembers class Geo: Object, Codable {
-    dynamic var lat, lng: String?
+class Geo: Object, Codable {
+    @objc dynamic var lat, lng: String?
     
     convenience init(lat: String?, lng: String?) {
         self.init()
@@ -234,8 +234,8 @@ extension Geo {
 //   }
 
 // MARK: - Company
-@objcMembers class Company: Object, Codable {
-    dynamic var name, catchPhrase, bs: String?
+class Company: Object, Codable {
+    @objc dynamic var name, catchPhrase, bs: String?
     
     convenience init(name: String?, catchPhrase: String?, bs: String?) {
         self.init()

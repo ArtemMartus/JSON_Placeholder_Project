@@ -44,4 +44,12 @@ class RepositoryInteractor {
         }
     }
     
+    func getPosts(uid: Int,_ callback: @escaping (Posts)->Void){
+        let array = (try! posts.value()).filter{$0.userID == uid}
+        callback( array )
+    }
+    func getAlbums(uid: Int,_ callback: @escaping (Albums)->Void){
+        let array = (try! albums.value()).filter{$0.userID == uid}
+        callback( array )
+    }
 }

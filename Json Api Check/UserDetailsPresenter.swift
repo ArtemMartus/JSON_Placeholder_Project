@@ -6,78 +6,139 @@
 //  Copyright © 2019 Artem Martus. All rights reserved.
 //
 
-import RxSwift
 import UIKit
 
 protocol UDPresenter: UITableViewDelegate & UITableViewDataSource {
-    func configure(with user: User)
+    func configure(with user: User!)
 }
 
 class UserDetailsPresenter: NSObject ,UDPresenter {
     private var router: Router! { view.router }
     private weak var repository: RepositoryInteractor!
-    private var postsSub: Disposable!
-    private var albumsSub: Disposable!
     private let view: Reloadable!
     private var user: User!
+    
+    private var posts: Posts?
+    private var albums: Albums?
+    
+    private var mainSectionData = [String]()
+    
+    private let idMain = 0
+    private let idPosts = 1
+    private let idAlbums = 2
     
     init(view: Reloadable!) {
         self.view = view
         repository = (UIApplication.shared.delegate as! AppDelegate).repository
         
         super.init()
-        
-        postsSub = repository.posts.subscribe({
-            [weak self] event in
-            debugPrint("posts updated with event")
-            guard let self = self else {return}
-            self.view.reload()
-        })
-        albumsSub = repository.albums.subscribe({
-            [weak self] event in
-            debugPrint("albums updated with event")
-            guard let self = self else {return}
-            self.view.reload()
-        })
     }
     
-    func configure(with user: User){
+    func configure(with user: User!){
         self.user = user
+        mainSectionData.removeAll()
+        if let name = user.name {
+            mainSectionData.append("Name: " + name)
+        }
+        if let website = user.website {
+            mainSectionData.append("Website: " + website)
+        }
+        if let city = user.address?.city {
+            mainSectionData.append("City: " + city)
+        }
+        if let suite = user.address?.suite {
+            mainSectionData.append("Suite: " + suite)
+        }
+        if let street = user.address?.street {
+            mainSectionData.append("Street: " + street)
+        }
+        if let zip = user.address?.zipcode {
+            mainSectionData.append( "Zip-code: " + zip)
+        }
+        if let phone = user.phone {
+            mainSectionData.append( "Phone: " + phone)
+        }
+        if let email = user.email {
+            mainSectionData.append( "Email: " + email)
+        }
+        if let company = user.company?.name {
+            mainSectionData.append( "Company: " + company)
+        }
+        
+        repository.getPosts(uid: user.id){ [weak self] posts in
+            self?.posts = posts
+            self?.view.reload()
+        }
+        repository.getAlbums(uid: user.id){ [weak self] albums in
+            self?.albums = albums
+            self?.view.reload()
+        }
+        
+        view.reload()
     }
     
     deinit {
-        debugPrint("disposing posts sub")
-        postsSub.dispose()
-        debugPrint("disposing albums sub")
-        albumsSub.dispose()
+        debugPrint("user details deinit")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 0
+        switch section {
+            case idMain:
+                return mainSectionData.count
+            case idPosts:
+                return posts?.count ?? 1
+            case idAlbums:
+                return albums?.count ?? 1
+            default:
+                return 0
         }
-        if section == 1 {
-            return 0
-        }
-        return 0
+        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Posts"
+        switch section {
+            case idMain:
+                return "Main information"
+            case idPosts:
+                return "Posts"
+            case idAlbums:
+                return "Albums"
+            default:
+                return "Undefined"
         }
-        if section == 1 {
-            return "Albums"
-        }
-        return "Undefined"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        3
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: standardListCell)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: standardListCell, for: indexPath)
+        
+        let row = indexPath.row
+        let section = indexPath.section
+        
+        switch section {
+            case idMain:
+                cell.textLabel?.text = mainSectionData[row]
+            case idPosts:
+                if let post = posts?[row]{
+                    cell.textLabel?.text = post.title
+                } else {
+                    cell.textLabel?.text = "No posts"
+                }
+            case idAlbums:
+                if let post = albums?[row]{
+                    cell.textLabel?.text = post.title
+                } else {
+                    cell.textLabel?.text = "No albums"
+                }
+            default:
+                fatalError("No cell handler for \(section) section")
+        }
+        
+        return cell
     }
     
 }

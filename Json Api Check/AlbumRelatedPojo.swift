@@ -42,15 +42,15 @@ import Realm
 
 // MARK: - Album
 @objcMembers class Album: Object, Codable {
-    dynamic var userID, id: Int?
+    dynamic var userID = -1, id = -1
     dynamic var title: String?
     
     enum CodingKeys: String, CodingKey {
-        case userID
+        case userID = "userId"
         case id, title
     }
     
-    convenience init(userID: Int?, id: Int?, title: String?) {
+    convenience init(userID: Int, id: Int, title: String?) {
         self.init()
         self.userID = userID
         self.id = id
@@ -78,9 +78,9 @@ extension Album {
     }
     
     func with(
-        userID: Int?? = nil,
-        id: Int?? = nil,
-        title: String?? = nil
+        userID: Int? = nil,
+        id: Int? = nil,
+        title: String? = nil
     ) -> Album {
         return Album(
             userID: userID ?? self.userID,

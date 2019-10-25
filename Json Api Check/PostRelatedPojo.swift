@@ -29,15 +29,15 @@ import Alamofire
 
 // MARK: - Post
 @objcMembers class Post: Object, Codable {
-    dynamic var userID, id: Int?
+    dynamic var userID = -1, id = -1
     dynamic var title, body: String?
     
     enum CodingKeys: String, CodingKey {
-        case userID
+        case userID = "userId"
         case id, title, body
     }
     
-    convenience init(userID: Int?, id: Int?, title: String?, body: String?) {
+    convenience init(userID: Int, id: Int, title: String?, body: String?) {
         self.init()
         self.userID = userID
         self.id = id
@@ -66,10 +66,10 @@ extension Post {
     }
     
     func with(
-        userID: Int?? = nil,
-        id: Int?? = nil,
-        title: String?? = nil,
-        body: String?? = nil
+        userID: Int? = nil,
+        id: Int? = nil,
+        title: String? = nil,
+        body: String? = nil
     ) -> Post {
         return Post(
             userID: userID ?? self.userID,

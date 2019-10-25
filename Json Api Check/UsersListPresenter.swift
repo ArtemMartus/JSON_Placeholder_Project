@@ -67,7 +67,8 @@ class UsersListPresenter: NSObject, ULPresenter {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         debugPrint("Selected row: \(indexPath.row)")
         
-        let item = (try! repository.users.value())[indexPath.row]
+        let item: User! = (try! repository.users.value())[indexPath.row]
+//        debugPrint("User at row(\(indexPath.row)) equals \(item!)")
         router.userDetailsView.configure(item)
         router.navigation.pushViewController(router.userDetailsView, animated: true)
     }
