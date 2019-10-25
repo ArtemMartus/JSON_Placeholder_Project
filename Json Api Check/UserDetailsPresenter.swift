@@ -114,6 +114,9 @@ class UserDetailsPresenter: NSObject ,UDPresenter {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: standardListCell, for: indexPath)
         
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .byWordWrapping
+        
         let row = indexPath.row
         let section = indexPath.section
         
