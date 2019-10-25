@@ -18,7 +18,6 @@ class UserDetailsView: UIViewController, Reloadable {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        title = "User details"
         debugPrint("user details view init()")
     }
     
@@ -63,6 +62,7 @@ class UserDetailsView: UIViewController, Reloadable {
     }
     
     func configure(_ item: User!){
+        title = item.name ?? "User details"
         presenter.configure(with: item)
     }
 }

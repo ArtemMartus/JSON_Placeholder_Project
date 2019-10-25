@@ -37,9 +37,7 @@ class UserDetailsPresenter: NSObject ,UDPresenter {
     func configure(with user: User!){
         self.user = user
         mainSectionData.removeAll()
-        if let name = user.name {
-            mainSectionData.append("Name: " + name)
-        }
+
         if let website = user.website {
             mainSectionData.append("Website: " + website)
         }
