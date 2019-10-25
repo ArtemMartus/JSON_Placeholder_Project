@@ -11,7 +11,7 @@ import UIKit
 class UserDetailsView: UIViewController, Reloadable {
     private lazy var presenter: UDPresenter! = UserDetailsPresenter(view: self)
     
-    private var embedTable = EmbedUserDetailsView()
+    private var embedTable = UITableViewController(style: .insetGrouped)
     
     
     var router: Router! { (view.window?.windowScene?.delegate as? SceneDelegate)?.router }

@@ -21,7 +21,7 @@ class RealmService {
     init() {
         
         // remove old database while in debug phase
-        try! FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
+//        try! FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
         
         
         do {
