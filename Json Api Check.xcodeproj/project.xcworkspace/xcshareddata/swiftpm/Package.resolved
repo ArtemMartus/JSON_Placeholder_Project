@@ -11,12 +11,21 @@
         }
       },
       {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher",
+        "state": {
+          "branch": null,
+          "revision": "3f0200463a2c747f985fa32845e7b70b0172474c",
+          "version": "5.9.0"
+        }
+      },
+      {
         "package": "Realm",
         "repositoryURL": "https://github.com/realm/realm-cocoa",
         "state": {
           "branch": null,
-          "revision": "9eec060b00e5dc7f00f1b06830eb78d62c44bb07",
-          "version": "3.20.0"
+          "revision": "c49cddd98fb37ad57a5703b25c5dd7be387c0180",
+          "version": "4.0.0"
         }
       },
       {

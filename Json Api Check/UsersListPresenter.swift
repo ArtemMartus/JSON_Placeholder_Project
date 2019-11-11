@@ -25,12 +25,12 @@ class UsersListPresenter: NSObject, ULPresenter {
         
         super.init()
         
-        sub = repository.users.subscribe({
+        sub = repository.users.subscribe {
             [weak self] event in
             debugPrint("data updated with event")
             guard let self = self else {return}
             self.view.reload()
-            })
+            }
     }
     
     deinit {

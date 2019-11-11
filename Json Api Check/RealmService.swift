@@ -11,11 +11,13 @@ import Realm
 import RealmSwift
 import RxSwift
 
+
 class RealmService {
     private let realm: Realm!
     var users: BehaviorSubject<Users>!
     var posts: BehaviorSubject<Posts>!
     var albums: BehaviorSubject<Albums>!
+    var photos: BehaviorSubject<Photos>!
     private var disposeBag: DisposeBag!
     
     init() {
@@ -35,13 +37,14 @@ class RealmService {
         loadUsers()
         loadPosts()
         loadAlbums()
+        loadPhotos()
     }
     
     deinit {
         debugPrint("Disposing realm service")
     }
     
-    private func loadUsers(){
+    private func loadUsers() {
         debugPrint("Loading users from db...")
         users = BehaviorSubject(value: Array(realm.objects(User.self)))
         disposeBag.insert(
@@ -59,7 +62,7 @@ class RealmService {
         )
     }
     
-    private func loadPosts(){
+    private func loadPosts() {
         debugPrint("Loading posts from db...")
         posts = BehaviorSubject(value: Array(realm.objects(Post.self)))
         disposeBag.insert(
@@ -77,11 +80,11 @@ class RealmService {
         )
     }
     
-    private func loadAlbums(){
+    private func loadAlbums() {
         debugPrint("Loading users from db...")
         albums = BehaviorSubject(value: Array(realm.objects(Album.self)))
         disposeBag.insert(
-            albums.subscribe({[weak self]event in
+            albums.subscribe {[weak self]event in
                 if let error = event.error {
                     fatalError(error.localizedDescription)
                 }
@@ -91,7 +94,24 @@ class RealmService {
                 }
                 
                 debugPrint("Added \(event.element!.count) albums to database")
-            })
+            }
+        )
+    }
+    
+    private func loadPhotos() {
+        debugPrint("Loading photos from db...")
+        photos = BehaviorSubject(value: Array(realm.objects(Photo.self)))
+        disposeBag.insert(
+            photos.subscribe {[weak self]event in
+                if let error = event.error {
+                    fatalError(error.localizedDescription)
+                }
+                
+                try! self?.realm.write {
+                    self?.realm.add(event.element!)
+                }
+                debugPrint("Added \(event.element!.count) albums to database")
+            }
         )
     }
 }

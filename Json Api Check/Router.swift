@@ -20,12 +20,15 @@ class Router {
     private var state: RouteState = .usersList
     
     private(set) lazy var usersListView = UsersListView()
-    private(set) lazy var userDetailsView = UserDetailsView()
+    private(set) lazy var userDetailsView = UserDetailsView(nibName: "UserDetailsView", bundle: nil)
+    private(set) lazy var postDetailsView = PostDetailsView(nibName: "PostDetailsView", bundle: nil)
+    private(set) lazy var albumDetailsView = AlbumDetailsView(nibName: "AlbumDetailsView", bundle: nil)
+    private(set) lazy var photoDetails = PhotoDetailsView(nibName: "PhotoDetailsView", bundle: nil)
     
     private(set) lazy var navigation = UINavigationController()
     
     
-    func setUp(_ window: UIWindow!){
+    func setUp(_ window: UIWindow!) {
         navigation.viewControllers = [usersListView]
         window.rootViewController = navigation
         window.makeKeyAndVisible()

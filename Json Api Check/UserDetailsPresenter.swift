@@ -34,7 +34,7 @@ class UserDetailsPresenter: NSObject ,UDPresenter {
         super.init()
     }
     
-    func configure(with user: User!){
+    func configure(with user: User!) {
         self.user = user
         mainSectionData.removeAll()
 
@@ -63,11 +63,11 @@ class UserDetailsPresenter: NSObject ,UDPresenter {
             mainSectionData.append( "Company: " + company)
         }
         
-        repository.getPosts(uid: user.id){ [weak self] posts in
+        repository.getPosts(uid: user.id) { [weak self] posts in
             self?.posts = posts
             self?.view.reload()
         }
-        repository.getAlbums(uid: user.id){ [weak self] albums in
+        repository.getAlbums(uid: user.id) { [weak self] albums in
             self?.albums = albums
             self?.view.reload()
         }
@@ -124,13 +124,13 @@ class UserDetailsPresenter: NSObject ,UDPresenter {
             case idMain:
                 cell.textLabel?.text = mainSectionData[row]
             case idPosts:
-                if let post = posts?[row]{
+                if let post = posts?[row] {
                     cell.textLabel?.text = post.title
                 } else {
                     cell.textLabel?.text = "No posts"
                 }
             case idAlbums:
-                if let post = albums?[row]{
+                if let post = albums?[row] {
                     cell.textLabel?.text = post.title
                 } else {
                     cell.textLabel?.text = "No albums"
@@ -140,6 +140,20 @@ class UserDetailsPresenter: NSObject ,UDPresenter {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+            case idPosts:
+                router.postDetailsView.configure(label: posts![indexPath.row].title!, content: posts![indexPath.row].body!)
+                router.navigation.pushViewController(router.postDetailsView, animated: true)
+            case idAlbums:
+                router.albumDetailsView.configure(album: albums![indexPath.row])
+                router.navigation.pushViewController(router.albumDetailsView, animated: true)
+            default:
+            print("default")
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

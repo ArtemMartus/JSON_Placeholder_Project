@@ -16,3 +16,6 @@ public let usersListCell = "users list cell"
 
 /// cell identifier for EmbedUserDetailsVIew's  TableView
 public let standardListCell = "standard list cell"
+
+/// cell identifier for AlbumDetailsView's TableView
+public let albumsListCell = "albums list cell"

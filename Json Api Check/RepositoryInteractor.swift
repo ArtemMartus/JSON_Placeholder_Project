@@ -26,6 +26,10 @@ class RepositoryInteractor {
         return realm.albums
     }
     
+    var photos: BehaviorSubject<Photos> {
+        return realm.photos
+    }
+    
     init() {
         network = NetworkingService()
         realm = RealmService()
@@ -42,14 +46,24 @@ class RepositoryInteractor {
             debugPrint("Fetching albums from internet...")
             network.updateAlbums(albums)
         }
+        if try! photos.value().count == 0 {
+            debugPrint("Fetching photos from internet...")
+            network.updatePhotos(photos)
+        }
     }
     
-    func getPosts(uid: Int,_ callback: @escaping (Posts)->Void){
+    func getPosts(uid: Int,_ callback: @escaping (Posts)->Void) {
         let array = (try! posts.value()).filter{$0.userID == uid}
         callback( array )
     }
-    func getAlbums(uid: Int,_ callback: @escaping (Albums)->Void){
+    
+    func getAlbums(uid: Int,_ callback: @escaping (Albums)->Void) {
         let array = (try! albums.value()).filter{$0.userID == uid}
+        callback( array )
+    }
+    
+    func getPhotos(albumID: Int,_ callback: @escaping (Photos)->Void) {
+        let array = (try! photos.value()).filter{$0.albumID == albumID}
         callback( array )
     }
 }

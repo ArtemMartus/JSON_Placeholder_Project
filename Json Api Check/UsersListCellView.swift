@@ -17,7 +17,7 @@ class UsersListCellView: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateWith(user: User){
+    func updateWith(user: User) {
         textLabel!.text = user.name
         detailTextLabel!.text = String(user.phone!)
     }

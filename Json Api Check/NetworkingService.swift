@@ -16,7 +16,7 @@ class NetworkingService {
         debugPrint("Networking service initialized")
     }
     
-    func updateUsers(_ users: BehaviorSubject<Users>){
+    func updateUsers(_ users: BehaviorSubject<Users>) {
         Alamofire.request(root + "users").responseUsers { response in
             debugPrint("users response downloaded")
             if let data = response.result.value {
@@ -27,7 +27,7 @@ class NetworkingService {
         }
     }
     
-    func updatePosts(_ posts: BehaviorSubject<Posts>){
+    func updatePosts(_ posts: BehaviorSubject<Posts>) {
         Alamofire.request(root + "posts").responsePosts { response in
             debugPrint("posts response downloaded")
             if let data = response.result.value {
@@ -38,13 +38,24 @@ class NetworkingService {
         }
     }
     
-    func updateAlbums(_ albums: BehaviorSubject<Albums>){
+    func updateAlbums(_ albums: BehaviorSubject<Albums>) {
         Alamofire.request(root + "albums").responseAlbums { response in
             debugPrint("albums response downloaded")
             if let data = response.result.value {
                 debugPrint("passsing albums data to subject")
                 // UserDetailsPresenter must handle this
                 albums.onNext(data)
+            }
+        }
+    }
+    
+    func updatePhotos(_ photos: BehaviorSubject<Photos>) {
+        Alamofire.request(root + "photos").responsePhotos { response in
+            debugPrint("photos response downloaded")
+            if let data = response.result.value {
+                debugPrint("passsing photoss data to subject")
+                // UserDetailsPresenter must handle this
+                photos.onNext(data)
             }
         }
     }
