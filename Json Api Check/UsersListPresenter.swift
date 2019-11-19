@@ -45,6 +45,7 @@ class UsersListPresenter: NSObject, ULPresenter {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         debugPrint("Selected row: \(indexPath.row)")
+        tableView.deselectRow(at: indexPath, animated: true)
         
         let item: User = users![indexPath.row]
         //        debugPrint("User at row(\(indexPath.row)) equals \(item!)")
