@@ -9,109 +9,74 @@
 import Foundation
 import Realm
 import RealmSwift
-import RxSwift
-
+import Dispatch
 
 class RealmService {
-    private let realm: Realm!
-    var users: BehaviorSubject<Users>!
-    var posts: BehaviorSubject<Posts>!
-    var albums: BehaviorSubject<Albums>!
-    var photos: BehaviorSubject<Photos>!
-    private var disposeBag: DisposeBag!
+    private var realm: Realm!
     
     init() {
         
         // remove old database while in debug phase
-//        try! FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
-        
+        //        try! FileManager.default.removeItem(at: Realm.Configuration.defaultConfiguration.fileURL!)
         
         do {
-            realm = try Realm()
+            self.realm = try Realm()
         } catch {
             fatalError("Couldn't initialize realm database: \(error)")
         }
         debugPrint("Realm database initialized")
-        disposeBag = DisposeBag()
         
-        loadUsers()
-        loadPosts()
-        loadAlbums()
-        loadPhotos()
+        
     }
     
-    deinit {
-        debugPrint("Disposing realm service")
+    public func writeUsers(_ array: Users) {
+        if array.count == 0 { return }
+        DispatchQueue.main.async {
+            try! self.realm.write {
+                self.realm.add(array)
+            }
+            debugPrint("Added \(array.count) users to database")
+        }
     }
     
-    private func loadUsers() {
+    public func loadUsers() -> Users {
         debugPrint("Loading users from db...")
-        users = BehaviorSubject(value: Array(realm.objects(User.self)))
-        disposeBag.insert(
-            users.subscribe({[weak self]event in
-                if let error = event.error {
-                    fatalError(error.localizedDescription)
-                }
-                
-                try! self?.realm.write {
-                    self?.realm.add(event.element!)
-                }
-                
-                debugPrint("Added \(event.element!.count) users to database")
-            })
-        )
+        return Array(realm.objects(User.self))
     }
     
-    private func loadPosts() {
+    public func writePosts(_ array: Posts) {
+        try! realm.write {
+            realm.add(array)
+        }
+        debugPrint("Added \(array.count) posts to database")
+    }
+    
+    public func loadPosts() -> Posts {
         debugPrint("Loading posts from db...")
-        posts = BehaviorSubject(value: Array(realm.objects(Post.self)))
-        disposeBag.insert(
-            posts.subscribe({[weak self]event in
-                if let error = event.error {
-                    fatalError(error.localizedDescription)
-                }
-                
-                try! self?.realm.write {
-                    self?.realm.add(event.element!)
-                }
-                
-                debugPrint("Added \(event.element!.count) posts to database")
-            })
-        )
+        return Array(realm.objects(Post.self))
     }
     
-    private func loadAlbums() {
-        debugPrint("Loading users from db...")
-        albums = BehaviorSubject(value: Array(realm.objects(Album.self)))
-        disposeBag.insert(
-            albums.subscribe {[weak self]event in
-                if let error = event.error {
-                    fatalError(error.localizedDescription)
-                }
-                
-                try! self?.realm.write {
-                    self?.realm.add(event.element!)
-                }
-                
-                debugPrint("Added \(event.element!.count) albums to database")
-            }
-        )
+    public func writeAlbums(_ array: Albums) {
+        try! realm.write {
+            realm.add(array)
+        }
+        debugPrint("Added \(array.count) Albums to database")
     }
     
-    private func loadPhotos() {
-        debugPrint("Loading photos from db...")
-        photos = BehaviorSubject(value: Array(realm.objects(Photo.self)))
-        disposeBag.insert(
-            photos.subscribe {[weak self]event in
-                if let error = event.error {
-                    fatalError(error.localizedDescription)
-                }
-                
-                try! self?.realm.write {
-                    self?.realm.add(event.element!)
-                }
-                debugPrint("Added \(event.element!.count) albums to database")
-            }
-        )
+    public func loadAlbums() -> Albums {
+        debugPrint("Loading Albums from db...")
+        return Array(realm.objects(Album.self))
+    }
+    
+    public func writePhotos(_ array: Photos) {
+        try! realm.write {
+            realm.add(array)
+        }
+        debugPrint("Added \(array.count) Photos to database")
+    }
+    
+    public func loadPhotos() -> Photos {
+        debugPrint("Loading Photos from db...")
+        return Array(realm.objects(Photo.self))
     }
 }

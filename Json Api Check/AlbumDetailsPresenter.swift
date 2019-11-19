@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 import Kingfisher
 
 protocol ADPresenter: UITableViewDelegate & UITableViewDataSource {
@@ -17,7 +16,6 @@ protocol ADPresenter: UITableViewDelegate & UITableViewDataSource {
 class AlbumDetailsPresenter: NSObject, ADPresenter {
     private var router: Router! { view.router }
     private weak var repository: RepositoryInteractor!
-    private var sub: Disposable!
     private let view: Reloadable!
     private var photos: Photos?
     
@@ -27,17 +25,11 @@ class AlbumDetailsPresenter: NSObject, ADPresenter {
         
         super.init()
         
-        sub = repository.albums.subscribe {
-            [weak self] event in
+        repository.getPhotos {
+            self.photos = $0
             debugPrint("data updated with event")
-            guard let self = self else {return}
             self.view.reload()
         }
-    }
-    
-    deinit {
-        debugPrint("disposing sub")
-        sub.dispose()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,9 +84,9 @@ class AlbumDetailsPresenter: NSObject, ADPresenter {
     
     
     func configure(with album: Album!) {
-        repository.getPhotos(albumID: album.id) {[weak self] array in
-            self?.photos = array
-            self?.view.reload()
+        repository.getAlbumPhotos(albumID: album.id) {
+            self.photos = $0
+            self.view.reload()
         }
     }
     

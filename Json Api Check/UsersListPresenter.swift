@@ -7,16 +7,14 @@
 //
 
 import UIKit
-import RxSwift
 import Dispatch
 
 typealias ULPresenter = UITableViewDelegate & UITableViewDataSource
 
 class UsersListPresenter: NSObject, ULPresenter {
-    
+    private var users: Users?
     private var router: Router! { view.router }
     private weak var repository: RepositoryInteractor!
-    private var sub: Disposable!
     private let view: Reloadable!
     
     init(view: Reloadable!) {
@@ -25,41 +23,22 @@ class UsersListPresenter: NSObject, ULPresenter {
         
         super.init()
         
-        sub = repository.users.subscribe {
-            [weak self] event in
-            debugPrint("data updated with event")
-            guard let self = self else {return}
+        repository.getUsers {
+            self.users = $0
+            debugPrint("users updated with callback")
             self.view.reload()
-            }
-    }
-    
-    deinit {
-        debugPrint("disposing sub")
-        sub.dispose()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var users: Users!
-        do {
-            users = try repository.users.value()
-        } catch {
-            fatalError("Couldn't retrieve data")
-        }
-        return users.count
+        return users?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView
             .dequeueReusableCell(withIdentifier: usersListCell, for: indexPath) as! UsersListCellView
         
-        var users: Users!
-        do {
-            users = try repository.users.value()
-        } catch {
-            fatalError("Couldn't retrieve data")
-        }
-        
-        cell.updateWith(user: users[indexPath.row])
+        cell.updateWith(user: users![indexPath.row])
         
         return cell
     }
@@ -67,8 +46,8 @@ class UsersListPresenter: NSObject, ULPresenter {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         debugPrint("Selected row: \(indexPath.row)")
         
-        let item: User! = (try! repository.users.value())[indexPath.row]
-//        debugPrint("User at row(\(indexPath.row)) equals \(item!)")
+        let item: User = users![indexPath.row]
+        //        debugPrint("User at row(\(indexPath.row)) equals \(item!)")
         router.userDetailsView.configure(item)
         router.navigation.pushViewController(router.userDetailsView, animated: true)
     }

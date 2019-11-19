@@ -8,62 +8,76 @@
 
 import Foundation
 import Alamofire
-import RxSwift
 
 class RepositoryInteractor {
     private let realm: RealmService
     private let network: NetworkingService
     
-    var users: BehaviorSubject<Users> {
-        return realm.users
+    public func getUsers(_ callback: @escaping (Users)->Void) {
+        let users = realm.loadUsers()
+        if users.count == 0 {
+            network.updateUsers {
+                self.realm.writeUsers($0)
+                callback($0);
+            }
+        }
+        callback(users)
     }
     
-    var posts: BehaviorSubject<Posts> {
-        return realm.posts
+    public func getPosts(_ callback: @escaping (Posts)->Void) {
+        let posts = realm.loadPosts()
+        if posts.count == 0 {
+            network.updatePosts {
+                self.realm.writePosts($0)
+                callback($0);
+            }
+        }
+        callback(posts)
     }
     
-    var albums: BehaviorSubject<Albums> {
-        return realm.albums
+    public func getAlbums(_ callback: @escaping (Albums)->Void) {
+        let albums = realm.loadAlbums()
+        if albums.count == 0 {
+            network.updateAlbums {
+                self.realm.writeAlbums($0)
+                callback($0);
+            }
+        }
+        callback(albums)
     }
     
-    var photos: BehaviorSubject<Photos> {
-        return realm.photos
+    public func getPhotos(_ callback: @escaping (Photos)->Void) {
+        let photos = realm.loadPhotos()
+        if photos.count == 0 {
+            network.updatePhotos {
+                self.realm.writePhotos($0)
+                callback($0);
+            }
+        }
+        callback(photos)
     }
     
     init() {
         network = NetworkingService()
         realm = RealmService()
-        
-        if try! users.value().count == 0 {
-            debugPrint("Fetching users from internet...")
-            network.updateUsers(users)
-        }
-        if try! posts.value().count == 0 {
-            debugPrint("Fetching posts from internet...")
-            network.updatePosts(posts)
-        }
-        if try! albums.value().count == 0 {
-            debugPrint("Fetching albums from internet...")
-            network.updateAlbums(albums)
-        }
-        if try! photos.value().count == 0 {
-            debugPrint("Fetching photos from internet...")
-            network.updatePhotos(photos)
-        }
+//        DispatchQueue.global(qos: .background).async {
+//            let callback: (Any)->Void = ({ print("updated \($0)")})
+//            self.getPosts(callback)
+//            self.getUsers(callback)
+//            self.getAlbums(callback)
+//            self.getPhotos(callback)
+//        }
     }
     
-    func getPosts(uid: Int,_ callback: @escaping (Posts)->Void) {
-        let array = (try! posts.value()).filter{$0.userID == uid}
-        callback( array )
+    func getUserPosts(uid: Int,_ callback: @escaping (Posts)->Void) {
+        getPosts { callback( $0.filter{$0.userID == uid} ) }
     }
     
-    func getAlbums(uid: Int,_ callback: @escaping (Albums)->Void) {
-        let array = (try! albums.value()).filter{$0.userID == uid}
-        callback( array )
+    func getUserAlbums(uid: Int,_ callback: @escaping (Albums)->Void) {
+        getAlbums { callback( $0.filter{$0.userID == uid} ) }
     }
     
-    func getPhotos(albumID: Int,_ callback: @escaping (Photos)->Void) {
-        let array = (try! photos.value()).filter{$0.albumID == albumID}
-        callback( array )
+    func getAlbumPhotos(albumID: Int,_ callback: @escaping (Photos)->Void) {
+        getPhotos { callback( $0.filter{$0.albumID == albumID} ) }
     }
 }

@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import RxSwift
 
 class NetworkingService {
     let root = "https://jsonplaceholder.typicode.com/"
@@ -16,46 +15,46 @@ class NetworkingService {
         debugPrint("Networking service initialized")
     }
     
-    func updateUsers(_ users: BehaviorSubject<Users>) {
+    func updateUsers(_ callback: @escaping (Users)->Void) {
         Alamofire.request(root + "users").responseUsers { response in
             debugPrint("users response downloaded")
             if let data = response.result.value {
                 debugPrint("passsing users data to subject")
                 // UsersListPresenter must handle this
-                users.onNext(data)
+                callback(data)
             }
         }
     }
     
-    func updatePosts(_ posts: BehaviorSubject<Posts>) {
+    func updatePosts(_ callback: @escaping (Posts)->Void) {
         Alamofire.request(root + "posts").responsePosts { response in
             debugPrint("posts response downloaded")
             if let data = response.result.value {
                 debugPrint("passsing posts data to subject")
                 // UserDetailsPresenter must handle this
-                posts.onNext(data)
+                callback(data)
             }
         }
     }
     
-    func updateAlbums(_ albums: BehaviorSubject<Albums>) {
+    func updateAlbums(_ callback: @escaping (Albums)->Void) {
         Alamofire.request(root + "albums").responseAlbums { response in
             debugPrint("albums response downloaded")
             if let data = response.result.value {
                 debugPrint("passsing albums data to subject")
                 // UserDetailsPresenter must handle this
-                albums.onNext(data)
+                callback(data)
             }
         }
     }
     
-    func updatePhotos(_ photos: BehaviorSubject<Photos>) {
+    func updatePhotos(_ callback: @escaping (Photos)->Void) {
         Alamofire.request(root + "photos").responsePhotos { response in
             debugPrint("photos response downloaded")
             if let data = response.result.value {
                 debugPrint("passsing photoss data to subject")
                 // UserDetailsPresenter must handle this
-                photos.onNext(data)
+                callback(data)
             }
         }
     }

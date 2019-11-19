@@ -63,13 +63,13 @@ class UserDetailsPresenter: NSObject ,UDPresenter {
             mainSectionData.append( "Company: " + company)
         }
         
-        repository.getPosts(uid: user.id) { [weak self] posts in
-            self?.posts = posts
-            self?.view.reload()
+        repository.getUserPosts(uid: user.id) {
+            self.posts = $0
+            self.view.reload()
         }
-        repository.getAlbums(uid: user.id) { [weak self] albums in
-            self?.albums = albums
-            self?.view.reload()
+        repository.getUserAlbums(uid: user.id) {
+            self.albums = $0
+            self.view.reload()
         }
         
         view.reload()
