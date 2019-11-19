@@ -35,10 +35,7 @@
 		E5FD8A5D2378286E0055E2B9 /* PostDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FD8A5B2378286E0055E2B9 /* PostDetailsView.swift */; };
 		E5FD8A5E2378286E0055E2B9 /* PostDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5FD8A5C2378286E0055E2B9 /* PostDetailsView.xib */; };
 		E5FD8A6023785B3D0055E2B9 /* AlbumDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5FD8A5F23785B3D0055E2B9 /* AlbumDetailsView.xib */; };
-		E5FD8A6223785D680055E2B9 /* AlbumDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FD8A6123785D680055E2B9 /* AlbumDetailsPresenter.swift */; };
-		E5FD8A64237863210055E2B9 /* AlbumDetailsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FD8A63237863210055E2B9 /* AlbumDetailsCellView.swift */; };
 		E5FD8A66237866290055E2B9 /* PhotoRelatedPojo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FD8A65237866290055E2B9 /* PhotoRelatedPojo.swift */; };
-		E5FD8A6923786B880055E2B9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E5FD8A6823786B880055E2B9 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +88,6 @@
 		E5FD8A5B2378286E0055E2B9 /* PostDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsView.swift; sourceTree = "<group>"; };
 		E5FD8A5C2378286E0055E2B9 /* PostDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDetailsView.xib; sourceTree = "<group>"; };
 		E5FD8A5F23785B3D0055E2B9 /* AlbumDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumDetailsView.xib; sourceTree = "<group>"; };
-		E5FD8A6123785D680055E2B9 /* AlbumDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsPresenter.swift; sourceTree = "<group>"; };
-		E5FD8A63237863210055E2B9 /* AlbumDetailsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsCellView.swift; sourceTree = "<group>"; };
 		E5FD8A65237866290055E2B9 /* PhotoRelatedPojo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRelatedPojo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,7 +96,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5FD8A6923786B880055E2B9 /* Kingfisher in Frameworks */,
 				E5127E57235854FF00B6A236 /* RealmSwift in Frameworks */,
 				E51B6DB6235622D0005E00E2 /* Alamofire in Frameworks */,
 			);
@@ -201,8 +195,6 @@
 			children = (
 				E51DAB82235C82C700F91097 /* AlbumDetailsView.swift */,
 				E5FD8A5F23785B3D0055E2B9 /* AlbumDetailsView.xib */,
-				E5FD8A6123785D680055E2B9 /* AlbumDetailsPresenter.swift */,
-				E5FD8A63237863210055E2B9 /* AlbumDetailsCellView.swift */,
 			);
 			name = AlbumDetails;
 			sourceTree = "<group>";
@@ -296,7 +288,6 @@
 			packageProductDependencies = (
 				E51B6DB5235622D0005E00E2 /* Alamofire */,
 				E5127E56235854FF00B6A236 /* RealmSwift */,
-				E5FD8A6823786B880055E2B9 /* Kingfisher */,
 			);
 			productName = "Json Api Check";
 			productReference = E51B6D812356228F005E00E2 /* Json Api Check.app */;
@@ -373,7 +364,6 @@
 			packageReferences = (
 				E51B6DB4235622D0005E00E2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				E5127E55235854FF00B6A236 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
-				E5FD8A6723786B880055E2B9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = E51B6D822356228F005E00E2 /* Products */;
 			projectDirPath = "";
@@ -435,10 +425,8 @@
 				E5127E5D23585E4800B6A236 /* RealmService.swift in Sources */,
 				E552A38A2361D8EC007CDAED /* AlbumRelatedPojo.swift in Sources */,
 				E552A3882361D8DC007CDAED /* PostRelatedPojo.swift in Sources */,
-				E5FD8A6223785D680055E2B9 /* AlbumDetailsPresenter.swift in Sources */,
 				E51B6DC423563019005E00E2 /* UsersListPresenter.swift in Sources */,
 				E51B6DC62356334A005E00E2 /* StaticVariables.swift in Sources */,
-				E5FD8A64237863210055E2B9 /* AlbumDetailsCellView.swift in Sources */,
 				E51B6DC823566403005E00E2 /* UsersListCellView.swift in Sources */,
 				E5CD137E2360765400FC9E82 /* UserDetailsPresenter.swift in Sources */,
 				E51B6D872356228F005E00E2 /* SceneDelegate.swift in Sources */,
@@ -784,14 +772,6 @@
 				minimumVersion = 4.9.0;
 			};
 		};
-		E5FD8A6723786B880055E2B9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -804,11 +784,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E51B6DB4235622D0005E00E2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		E5FD8A6823786B880055E2B9 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E5FD8A6723786B880055E2B9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,6 +8,8 @@
 
 import Foundation
 import Alamofire
+import UIKit
+import Dispatch
 
 class RepositoryInteractor {
     private let realm: RealmService
@@ -60,13 +62,31 @@ class RepositoryInteractor {
     init() {
         network = NetworkingService()
         realm = RealmService()
-//        DispatchQueue.global(qos: .background).async {
-//            let callback: (Any)->Void = ({ print("updated \($0)")})
-//            self.getPosts(callback)
-//            self.getUsers(callback)
-//            self.getAlbums(callback)
-//            self.getPhotos(callback)
-//        }
+    }
+    
+    func downloadImage(_ urlString: String, callback: @escaping (UIImage)->Void) {
+        DispatchQueue.global().async {
+            let cache = NSCache<NSString,UIImage>()
+            if let image = cache.object(forKey: NSString(string: urlString)) {
+                DispatchQueue.main.async {
+                    callback(image)
+                }
+            } else {
+                let task = URLSession.shared.dataTask(with: URL(string: urlString)!) {
+                    data, response, error in
+                    if let error = error {
+                        print("downloading image \(error)")
+                        return
+                    }
+                    let image = UIImage(data: data!)!
+                    cache.setObject(image ,forKey: urlString as NSString)
+                    DispatchQueue.main.async {
+                        callback(image)
+                    }
+                }
+                task.resume()
+            }
+        }
     }
     
     func getUserPosts(uid: Int,_ callback: @escaping (Posts)->Void) {
