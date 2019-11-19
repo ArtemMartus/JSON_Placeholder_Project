@@ -12,17 +12,8 @@
 //
 //   let users = try Users(json)
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseUser { response in
-//     if let user = response.result.value {
-//       ...
-//     }
-//   }
 
 import Foundation
-import Alamofire
 import RealmSwift
 import Realm
 
@@ -166,15 +157,6 @@ extension Address {
     }
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseGeo { response in
-//     if let geo = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Geo
 class Geo: Object, Codable {
     @objc dynamic var lat, lng: String?
@@ -223,15 +205,6 @@ extension Geo {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseCompany { response in
-//     if let company = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - Company
 class Company: Object, Codable {
@@ -328,30 +301,4 @@ fileprivate func newJSONEncoder() -> JSONEncoder {
         encoder.dateEncodingStrategy = .iso8601
     }
     return encoder
-}
-
-// MARK: - Alamofire response handlers
-
-extension DataRequest {
-    fileprivate func decodableResponseSerializer<T: Decodable>() -> DataResponseSerializer<T> {
-        return DataResponseSerializer { _, response, data, error in
-            guard error == nil else { return .failure(error!) }
-            
-            guard let data = data else {
-                return .failure(AFError.responseSerializationFailed(reason: .inputDataNil))
-            }
-            
-            return Result { try newJSONDecoder().decode(T.self, from: data) }
-        }
-    }
-    
-    @discardableResult
-    fileprivate func responseDecodable<T: Decodable>(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<T>) -> Void) -> Self {
-        return response(queue: queue, responseSerializer: decodableResponseSerializer(), completionHandler: completionHandler)
-    }
-    
-    @discardableResult
-    func responseUsers(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<Users>) -> Void) -> Self {
-        return responseDecodable(queue: queue, completionHandler: completionHandler)
-    }
 }

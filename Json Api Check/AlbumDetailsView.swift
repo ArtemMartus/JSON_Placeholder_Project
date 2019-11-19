@@ -69,13 +69,12 @@ extension AlbumDetailsView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
         let item = photos![indexPath.row]
         
         repository?.downloadImage(item.url!) {
             self.router.photoDetails.configure(item.title!, image: $0)
             self.router.navigation.pushViewController(self.router.photoDetails, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }

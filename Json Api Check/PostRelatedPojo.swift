@@ -12,20 +12,9 @@
 //
 //   let posts = try Posts(json)
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responsePost { response in
-//     if let post = response.result.value {
-//       ...
-//     }
-//   }
-
-
 import RealmSwift
 import Realm
 import Foundation
-import Alamofire
 
 // MARK: - Post
 @objcMembers class Post: Object, Codable {
@@ -131,30 +120,4 @@ fileprivate func newJSONEncoder() -> JSONEncoder {
         encoder.dateEncodingStrategy = .iso8601
     }
     return encoder
-}
-
-// MARK: - Alamofire response handlers
-
-extension DataRequest {
-    fileprivate func decodableResponseSerializer<T: Decodable>() -> DataResponseSerializer<T> {
-        return DataResponseSerializer { _, response, data, error in
-            guard error == nil else { return .failure(error!) }
-            
-            guard let data = data else {
-                return .failure(AFError.responseSerializationFailed(reason: .inputDataNil))
-            }
-            
-            return Result { try newJSONDecoder().decode(T.self, from: data) }
-        }
-    }
-    
-    @discardableResult
-    fileprivate func responseDecodable<T: Decodable>(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<T>) -> Void) -> Self {
-        return response(queue: queue, responseSerializer: decodableResponseSerializer(), completionHandler: completionHandler)
-    }
-    
-    @discardableResult
-    func responsePosts(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<Posts>) -> Void) -> Self {
-        return responseDecodable(queue: queue, completionHandler: completionHandler)
-    }
 }
