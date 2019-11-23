@@ -90,14 +90,14 @@ class RepositoryInteractor {
     }
     
     func getUserPosts(uid: Int,_ callback: @escaping (Posts)->Void) {
-        getPosts { callback( $0.filter{$0.userID == uid} ) }
+        getPosts { callback( $0.filter {$0.userID == uid} ) }
     }
     
     func getUserAlbums(uid: Int,_ callback: @escaping (Albums)->Void) {
-        getAlbums { callback( $0.filter{$0.userID == uid} ) }
+        getAlbums { callback( $0.filter {$0.userID == uid} ) }
     }
     
     func getAlbumPhotos(albumID: Int,_ callback: @escaping (Photos)->Void) {
-        getPhotos { callback( $0.filter{$0.albumID == albumID} ) }
+        getPhotos { callback( $0.filter {$0.albumID == albumID} ) }
     }
 }
