@@ -12,14 +12,13 @@ import UIKit
 class AlbumDetailsView: UIViewController {
     var router: Router! { (view.window?.windowScene?.delegate as? SceneDelegate)?.router }
     private weak var repository = (UIApplication.shared.delegate as! AppDelegate).repository
-    private var cellReuseIdentifier = albumsListCell
     private var photos: Photos?
     @IBOutlet weak var tableView: UITableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView!.register(UITableViewCell.self , forCellReuseIdentifier: cellReuseIdentifier)
+        tableView!.register(AlbumDetailsViewCell.self , forCellReuseIdentifier: albumsListCell)
         tableView!.dataSource = self
         tableView!.delegate = self
         tableView!.rowHeight = CGFloat(150)
@@ -28,8 +27,6 @@ class AlbumDetailsView: UIViewController {
     func configure(album: Album!) {
         repository?.getAlbumPhotos(albumID: album.id) {
             self.title = album.title
-            self.cellReuseIdentifier = albumsListCell + album.title!
-            self.tableView?.register(UITableViewCell.self , forCellReuseIdentifier: self.cellReuseIdentifier)
             self.photos = $0
             self.tableView?.reloadData()
         }
@@ -72,21 +69,24 @@ fileprivate  func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
 extension AlbumDetailsView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = photos![indexPath.row]
+        let raysImage = resizeImage(image: UIImage(systemName: "rays")!, targetSize: CGSize(width: 148, height: 148))
         let cell = tableView
-            .dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+            .dequeueReusableCell(withIdentifier: albumsListCell, for: indexPath) as! AlbumDetailsViewCell
         
-        cell.imageView?.image = resizeImage(image: UIImage(systemName: "rays")!, targetSize: CGSize(width: 148, height: 148))
+        cell.imageView?.image = raysImage
+        cell.photo = item
         cell.textLabel?.text = item.title
-
         cell.textLabel?.numberOfLines = 0
         
         
         repository?.downloadImage(item.thumbnailURL!) {
-            if let searchCell = tableView.cellForRow(at: indexPath) {
-                searchCell.imageView?.image = $0
-                searchCell.textLabel?.text = item.title
-            } else {
+            if let rawCell = tableView.cellForRow(at: indexPath),
+                let cell = rawCell as? AlbumDetailsViewCell,
+                let photo = cell.photo,
+                photo.id == item.id {
+                
                 cell.imageView?.image = $0
+                
             }
         }
         
